@@ -1,3 +1,3 @@
-const domainApi : string = "http://localhost:8000"
+const domainApi: string = "https://sky-explorer-admin-api.fly.dev";
 
-export default domainApi
+export default domainApi;
