@@ -1,0 +1,150 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wrapper{
+  background-color: #38a993;
+  background-image: url("https://i.ibb.co/zX4gSj2/Vector.png");
+  width: 100vw;
+}
+.header-row {
+  width: 100%;
+}
+.dropdown-menu[data-bs-popper]{
+  right: 0;
+  left: auto;
+}
+
+.wrapper {
+  background-color: #38a993;
+  background-image: url("https://i.ibb.co/zX4gSj2/Vector.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.wrapper-white {
+  background-color: white;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.card-box {
+  max-width: 800px;
+  max-height: 526px;
+  margin: 0 auto;
+  padding: 24px;  
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: black; 
+}
+
+.form {
+  margin: 20px 0 0 0;
+}
+
+.form button {
+  background-color: #38A993;
+  border: none;
+  padding: 16px;
+  color: white; /* Putih */
+  width: 100%; 
+  border-radius: var(--Corner-Radius-Radius-Button-12, 12px);
+}
+
+.form button:disabled {
+  background: var(--Neutral-300, #D0D5DD);
+}
+
+.form input {
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid var(--Neutral-100, #F2F4F7);
+}
+
+.modal-unregisteredEmail{
+  width: 400px;
+  padding: 24px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.primary-button {
+  background-color: #38A993;
+  border: none;
+  padding: 16px;
+  color: white; 
+  width: 100%; 
+  border-radius: var(--Corner-Radius-Radius-Button-12, 12px);
+}
+
+.secondary-button {
+  background-color: white;
+  border: 2px solid;
+  padding: 16px;
+  color: #38A993; 
+  width: 100%; 
+  border-radius: var(--Corner-Radius-Radius-Button-12, 12px);
+}
+
+.secondary-button:disabled {
+  background-color: #D0D5DD;
+  border: 2px solid #D0D5DD ;
+  color: #FFFFFF; 
+}
+
+.primary-button-small {
+  background-color: #38A993;
+  border: none;
+  padding: 8px 16px;
+  color: white; 
+  border-radius: var(--Corner-Radius-Radius-Button-12, 12px);
+}
+
+.wrong-input{
+  border-color: #C81A23 !important;
+}
+
+.true-input{
+  border-color: #38A993 !important;
+}
+
+.invalid-information {
+  font-size: .875em;
+  color: var(--bs-form-invalid-color);
+}
+
+.sidebar-list .badge{
+background-color: #38A993;
+color: white;
+border-radius: 50%;
+padding: 8px;
+margin: 5px;
+}
+
+.sidebar-list a{
+  text-decoration: none;
+  font-size: large;
+  font-weight: 500;
+}

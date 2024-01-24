@@ -1,0 +1,54 @@
+.card-body {
+  padding: 0;
+}
+
+.img-col > img {
+  max-width: 100%;
+}
+
+.title-card {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  margin: 32px 0 0 0;
+}
+
+.subtitle-card {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 20px 0 0 0;
+}
+
+.body-col > .row {
+  height: 100%;
+}
+
+.body-col > .row > .logoContainer {
+  border-bottom: 1px dashed #eaecf0;
+}
+
+.email-form {
+  margin: 20px 0 0 0;
+}
+
+#counter-number{
+  color:#38A993;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+label {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.input-email {
+  margin: 6px 0 0 0;
+}
