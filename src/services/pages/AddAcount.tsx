@@ -78,9 +78,7 @@ function AddAccount() {
       <div className="container">
         <Alert show={show} variant="danger">
           <Alert.Heading>Kesalahan</Alert.Heading>
-          <p>
-            {message}
-          </p>
+          <p>{message}</p>
           <hr />
           <div className="d-flex justify-content-end">
             <Button onClick={() => setShow(false)} variant="outline-success">

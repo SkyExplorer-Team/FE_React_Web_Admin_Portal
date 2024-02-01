@@ -8,6 +8,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import CheckEmail from "./pages/CheckEmail";
 import PageNotFound from "./pages/NotFound";
 import CheckConnection from "../components/CheckConnection";
+import Forbbiden from "./pages/Forbidden";
 
 const App: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const App: React.FC = () => {
           </Route>
           <Route path="*" element={<PageNotFound/>} />
           <Route path="/not-found" element={<PageNotFound/>} />
+          <Route path="/forbidden" element={<Forbbiden />} />
         </Routes>
       </Router>
     </CheckConnection>

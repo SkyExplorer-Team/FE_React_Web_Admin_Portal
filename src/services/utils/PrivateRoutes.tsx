@@ -21,7 +21,7 @@ const PrivateRoutes = () => {
     checkToken(); 
   }, []); 
 
-  return tokenValid ? <Outlet /> : <Navigate to="/" />;
+  return tokenValid ? <Outlet /> : <Navigate to="/forbidden" />;
 };
 
 export default PrivateRoutes;

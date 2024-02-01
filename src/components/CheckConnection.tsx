@@ -16,6 +16,7 @@ const CheckConnection: React.FC<CheckConnectionProps> = (props) => {
         <div
           style={{
             display: "block",
+
             alignItems: "center",
             justifyContent: "center",
             height: "100vh",

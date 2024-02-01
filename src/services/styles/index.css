@@ -45,7 +45,6 @@
   width: 100%;
   z-index: 1000; /* Ensure the header is above other elements */
 }
-
 .wrapper-white {
   background-color: white;
   min-height: 100vh;
