@@ -46,7 +46,6 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
     const [isAddModalShow, setIsAddModalShow] = useState(false);
     const [isUpdateModalShow, setIsUpdateModalShow] = useState(false);
     const token = localStorage.getItem('token');
-    const [message, setMessage] = useState('');
     const { register, reset, setValue, getValues, handleSubmit } = useForm({
       defaultValues: {
           id: "",
@@ -77,7 +76,6 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
 
     const handleAddAirport = async (data: FieldValues) =>  {
       try {
-        setMessage("")
         basicProps.setIsLoading(true)
         setRecord(undefined)
         setIsAddModalShow(false)
@@ -90,12 +88,10 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", abv: "", national_id:"", city: "",lat: 0.0, lng: 0.0 });
@@ -108,7 +104,6 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
     const handleEditAirport = async (data: FieldValues) =>  {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsUpdateModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/airports/${data.id}`, {
@@ -120,12 +115,10 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", abv: "", national_id:"", city: "",lat: 0.0, lng: 0.0 });
@@ -138,7 +131,6 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
     const handleDeleteAirport = async (data: FieldValues) => {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsDeleteModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/airports/${data.id}`, {
@@ -149,12 +141,10 @@ const ManageAirports: React.FC<ManageAirportsProps> = ({basicProps, airportsData
           },
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", abv: "", national_id:"", city: "",lat: 0.0, lng: 0.0 });

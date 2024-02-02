@@ -17,7 +17,6 @@ function AddAccount() {
     const [formData, setFormData]= useState({name:"", password: "", confirmPassword: "", email: "" })
     const [show, setShow] = useState(false);
 
-    const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
 
     const handleChange = (event: { target: {name: string, value: string }; }) => {

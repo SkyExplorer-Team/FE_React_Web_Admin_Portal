@@ -18,7 +18,6 @@ function EditAccount() {
     const [show, setShow] = useState(false);
     const { id } = useParams();
     const token = localStorage.getItem('token');
-    const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
     console.log(id)
 
@@ -99,8 +98,6 @@ function EditAccount() {
             } catch (error) {
               console.error('Error during fetch:', error);
               navigate('/not-found');
-            } finally {
-              setLoading(false);
             }
           };
           
