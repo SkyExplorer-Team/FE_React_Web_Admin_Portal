@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import isTokenValid from "./IsTokenValid";
 
 const PrivateRoutes = () => {
-  const [tokenValid, setTokenValid] = useState<boolean | null>(null);
+  const [tokenValid, setTokenValid] = useState<boolean | null>(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -21,11 +21,7 @@ const PrivateRoutes = () => {
     checkToken(); 
   }, []); 
 
-  if (tokenValid === null) {
-    return <div>Loading...</div>;
-  }
-
-  return tokenValid ? <Outlet /> : <Navigate to="/" />;
+  return tokenValid ? <Outlet /> : <Navigate to="/forbidden" />;
 };
 
 export default PrivateRoutes;

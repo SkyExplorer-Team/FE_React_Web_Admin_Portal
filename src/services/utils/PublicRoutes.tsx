@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import isTokenValid from "./IsTokenValid";
 
 const PublicRoutes = () => {
-  const [tokenValid, setTokenValid] = useState<boolean | null>(null);
+  const [tokenValid, setTokenValid] = useState<boolean | null>(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,10 +20,6 @@ const PublicRoutes = () => {
 
     checkToken(); 
   }, []); 
-
-  if (tokenValid === null) {
-    return <div>Loading...</div>;
-  }
 
   return tokenValid ? <Navigate to="/dashboard" /> : <Outlet />;
 };
