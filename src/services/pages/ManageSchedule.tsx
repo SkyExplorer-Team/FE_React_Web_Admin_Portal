@@ -51,7 +51,6 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
     const [isAddModalShow, setIsAddModalShow] = useState(false);
     const [isUpdateModalShow, setIsUpdateModalShow] = useState(false);
     const token = localStorage.getItem('token');
-    const [message, setMessage] = useState('');
     const { register, reset, setValue, getValues, handleSubmit } = useForm({
       defaultValues: {
           id: "",
@@ -82,7 +81,6 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
 
     const handleAddSchedule = async (data: FieldValues) =>  {
       try {
-        setMessage("")
         basicProps.setIsLoading(true)
         setRecord(undefined)
         setIsAddModalShow(false)
@@ -95,11 +93,9 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
         }
         basicProps.fetchAllData()
         reset({ id: "", airplane_id: "", from_id: "", to_id:"", price: 0, time_departure: "", time_arrive: ""});
@@ -112,7 +108,6 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
     const handleEditSchedule = async (data: FieldValues) =>  {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsUpdateModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/schedules/${data.id}`, {
@@ -124,11 +119,9 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
         }
         basicProps.fetchAllData()
         reset({ id: "", airplane_id: "", from_id: "", to_id:"", price: 0, time_departure: "", time_arrive: ""});
@@ -141,7 +134,6 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
     const handleDeleteSchedule = async (data: FieldValues) => {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsDeleteModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/schedules/${data.id}`, {
@@ -152,11 +144,9 @@ const ManageSchedules: React.FC<ManageSchedulesProps> = ({basicProps, schedulesD
           },
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
         }
         basicProps.fetchAllData()
         reset({ id: "", airplane_id: "", from_id: "", to_id:"", price: 0, time_departure: "", time_arrive: ""});

@@ -30,7 +30,6 @@ const ManageAccount: React.FC<ManageAccountProps> = ({ usersData }) => {
     const [infoDeleteData, setInfoDeleteData] = useState({id:"", name:""});
     const [isDeleteModalShow, setIsDeleteModalShow] = useState(false);
     const token = localStorage.getItem('token');
-    const [message, setMessage] = useState('');
 
     function handleFilter(event: { target: { value: string; }; }){
         const newData = usersData.filter( row => {
@@ -58,12 +57,10 @@ const ManageAccount: React.FC<ManageAccountProps> = ({ usersData }) => {
         });
   
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           setIsDeleteModalShow(false)
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           setIsDeleteModalShow(false)
         }
         window.scrollTo(0, 0);

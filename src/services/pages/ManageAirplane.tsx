@@ -4,7 +4,6 @@ import DataTable, { TableColumn } from 'react-data-table-component';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useForm, FieldValues } from "react-hook-form";
-import Select, { SingleValue } from 'react-select';
 import domainApi from '../config/domainApi';
 
 type AirplaneData = {
@@ -29,8 +28,7 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
     const [isAddModalShow, setIsAddModalShow] = useState(false);
     const [isUpdateModalShow, setIsUpdateModalShow] = useState(false);
     const token = localStorage.getItem('token');
-    const [message, setMessage] = useState('');
-    const { register, reset, setValue, getValues, handleSubmit } = useForm({
+    const { register, reset, getValues, handleSubmit } = useForm({
       defaultValues: {
           id: "",
           name: "",
@@ -53,7 +51,6 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
 
     const handleAddAirplane = async (data: FieldValues) =>  {
       try {
-        setMessage("")
         basicProps.setIsLoading(true)
         setRecord(undefined)
         setIsAddModalShow(false)
@@ -66,12 +63,10 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", code: "",speed: 0 })
@@ -84,7 +79,6 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
     const handleEditAirplane = async (data: FieldValues) =>  {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsUpdateModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/airplanes/${data.id}`, {
@@ -96,12 +90,10 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
           body: new URLSearchParams(data),
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", code: "",speed: 0 })
@@ -114,7 +106,6 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
     const handleDeleteAirplane = async (data: FieldValues) => {
       try {
         basicProps.setIsLoading(true)
-        setMessage("")
         setRecord(undefined)
         setIsDeleteModalShow(false)
         const response = await fetch(`${domainApi}/api/v1/airplanes/${data.id}`, {
@@ -125,12 +116,10 @@ const ManageAirplanes: React.FC<ManageAirplanesProps> = ({basicProps, airplanesD
           },
         });
         if (response.ok) {
-          const data = await response.json();
-          setMessage(data.message)
+          await response.json();
           basicProps.fetchAllData()
         } else {
-          const data = await response.json()
-          setMessage(data.message)
+          await response.json()
           basicProps.setIsLoading(false)
         }
         reset({ id: "", name: "", code: "",speed: 0 })
