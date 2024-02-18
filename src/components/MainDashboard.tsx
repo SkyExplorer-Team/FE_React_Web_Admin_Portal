@@ -1,4 +1,14 @@
-function MainComponent() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapLocation, faPlane, faCalendarDay, faCreditCard } from "@fortawesome/free-solid-svg-icons";
+
+type DashboardData = {
+  airportData: number
+  airplaneData: number
+  scheduleData: number
+  transactionData: number
+};
+
+function MainComponent({ dashboardData }: { dashboardData: DashboardData }) {
   return (
     <>
       <div id="main">
@@ -12,10 +22,8 @@ function MainComponent() {
           <div className="page-title">
             <div className="row">
               <div className="col-12 col-md-6 order-md-1 order-last">
-                <h3>Layout Default</h3>
-                <p className="text-subtitle text-muted">The default layout.</p>
               </div>
-              <div className="col-12 col-md-6 order-md-2 order-first">
+                <div className="col-12 col-md-6 order-md-2 order-first">
                 <nav
                   aria-label="breadcrumb"
                   className="breadcrumb-header float-start float-lg-end"
@@ -35,34 +43,79 @@ function MainComponent() {
           <section className="section">
             <div className="card">
               <div className="card-header">
-                <h4 className="card-title">Default Layout</h4>
+                <h4 className="card-title">Dashboard</h4>
               </div>
-              <div className="card-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
-                commodi? Ullam quaerat similique iusto temporibus, vero aliquam
-                praesentium, odit deserunt eaque nihil saepe hic deleniti?
-                Placeat delectus quibusdam ratione ullam!
+              <div className="card-body p-4">
+                <div className="row">
+                  <div className="col-xl-3 col-md-6 mb-4">
+                      <div className="card border-left-primary shadow h-100 p-4">
+                          <div className="card-body">
+                              <div className="row no-gutters align-items-center">
+                                  <div className="col mr-2">
+                                      <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                          Airpots</div>
+                                      <div className="h5 mb-0 font-weight-bold text-gray-800">{dashboardData.airportData}</div>
+                                  </div>
+                                  <div className="col-auto">
+                                    <FontAwesomeIcon icon={faMapLocation} style={{color: "#dddfeb" , fontSize: "2em" }} />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col-xl-3 col-md-6 mb-4">
+                      <div className="card border-left-primary shadow h-100 p-4">
+                          <div className="card-body">
+                              <div className="row no-gutters align-items-center">
+                                  <div className="col mr-2">
+                                      <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                          Airplanes</div>
+                                      <div className="h5 mb-0 font-weight-bold text-gray-800">{dashboardData.airplaneData}</div>
+                                  </div>
+                                  <div className="col-auto">
+                                    <FontAwesomeIcon icon={faPlane} style={{color: "#dddfeb" , fontSize: "2em" }} />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col-xl-3 col-md-6 mb-4">
+                      <div className="card border-left-primary shadow h-100 p-4">
+                          <div className="card-body">
+                              <div className="row no-gutters align-items-center">
+                                  <div className="col mr-2">
+                                      <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                          Schedules</div>
+                                      <div className="h5 mb-0 font-weight-bold text-gray-800">{dashboardData.scheduleData}</div>
+                                  </div>
+                                  <div className="col-auto">
+                                    <FontAwesomeIcon icon={faCalendarDay} style={{color: "#dddfeb" , fontSize: "2em" }} />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col-xl-3 col-md-6 mb-4">
+                      <div className="card border-left-primary shadow h-100 p-4">
+                          <div className="card-body">
+                              <div className="row no-gutters align-items-center">
+                                  <div className="col mr-2">
+                                      <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                          Transactions</div>
+                                      <div className="h5 mb-0 font-weight-bold text-gray-800">{dashboardData.transactionData}</div>
+                                  </div>
+                                  <div className="col-auto">
+                                    <FontAwesomeIcon icon={faCreditCard} style={{color: "#dddfeb" , fontSize: "2em" }} />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </div>
-
-        <footer>
-          <div className="footer clearfix mb-0 text-muted">
-            <div className="float-start">
-              <p>2023 &copy; Mazer</p>
-            </div>
-            <div className="float-end">
-              <p>
-                Crafted with{" "}
-                <span className="text-danger">
-                  <i className="bi bi-heart-fill icon-mid"></i>
-                </span>
-                by <a href="https://saugi.me">Saugi</a>
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );

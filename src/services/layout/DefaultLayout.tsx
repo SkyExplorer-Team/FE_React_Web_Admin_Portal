@@ -11,6 +11,7 @@ import domainApi from "../config/domainApi";
 import ManageAirports from "../pages/ManageAirport";
 import ManageAirplanes from "../pages/ManageAirplane";
 import ManageSchedules from "../pages/ManageSchedule";
+import ManageTransactions from "../pages/ManageTransaction";
 
 type UserData = {
   name: string;
@@ -66,16 +67,40 @@ type ScheduleData = {
   toData: RelationData
 }
 
+type TransactionData = {
+  id: string
+  amount: number
+  description: string
+  payment_method: string
+  status: string
+  transaction_date: string
+  booking_id: string
+  };
+
+type DashboardData = {
+  airportData: number
+  airplaneData: number
+  scheduleData: number
+  transactionData: number
+};
+
 const App: React.FC = () => {
   const { pathname } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState<UserData[]>([]);
+  const [dashboardData, setDashboardData] = useState< DashboardData>({
+  airportData: 0,
+  airplaneData: 0,
+  scheduleData: 0,
+  transactionData: 0,
+});
   const [nationalSelect, setNationalData] = useState< readonly SelectData[]>([]);
   const [airportSelect, setAirportSelect] = useState< readonly SelectData[]>([]);
   const [airplaneSelect, setAirplaneSelect] = useState< readonly SelectData[]>([]);
   const [airportsData, setAirportsData] = useState< AirportData[]>([]);
   const [airplanesData, setAirplanesData] = useState< AirplaneData[]>([]);
   const [schedulesData, setSchedulesData] = useState< ScheduleData[]>([]);
+  const [transactionData, setTransactionData] = useState< TransactionData[]>([]);
   const token = localStorage.getItem('token');
   let contentComponent: React.ReactNode;
   
@@ -148,17 +173,44 @@ const App: React.FC = () => {
     } else {
       console.error('Error fetching Schedules data:', responseSchedulesData.status);
     }
+
+    const responseTransactionData = await fetch(`${domainApi}/api/v1/transactions`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (responseTransactionData.ok) {
+      const data = await responseTransactionData.json();
+      setTransactionData(data.data)
+      // setTransactionData([{id: '4dc4da25-5c00-4b8b-ae5a-fd9037b7f69c',
+      //   amount: 300000,
+      //   description: 'Flight Booking A',
+      //   payment_method: 'Transfer',
+      //   status: 'Pending',
+      //   transaction_date: '2024-02-01 03:50:00.000',
+      //   booking_id: '2'}, {id: '2',
+      //   amount: 270000,
+      //   description: 'Flight Booking B',
+      //   payment_method: 'Transfer Rekening',
+      //   status: 'Confirmed',
+      //   transaction_date: '2024-03-04 03:50:00.000',
+      //   booking_id: '2'}]);
+    } else {
+      console.error('Error fetching Transactions data:', responseTransactionData.status);
+    }
     setIsLoading(false)
     } catch (error) {
       console.error('Error during fetch:', error);
     }
+    
   }, [token]);
 
   const basicProps = { isLoading, setIsLoading, fetchAllData }
   
   switch (true) {
     case pathname === "/dashboard":
-      contentComponent = <MainComponent />;
+      contentComponent = <MainComponent dashboardData={dashboardData}/>;
       break;
     case pathname === "/account":
       contentComponent = <ManageAccount usersData={userData} />;
@@ -178,12 +230,23 @@ const App: React.FC = () => {
     case pathname === "/schedule":
       contentComponent = <ManageSchedules basicProps={basicProps} schedulesData={schedulesData } airportSelect={airportSelect} airplaneSelect={airplaneSelect} />;
       break;
+    case pathname === "/transaction":
+      contentComponent = <ManageTransactions basicProps={basicProps} transactionData={transactionData} />;
+      break;
     }
 
 
   useEffect(() => {
     fetchAllData();
-  }, [fetchAllData]);
+    setDashboardData((prevData) => ({
+      ...prevData,
+      scheduleData: schedulesData.length,
+      airplaneData: airplanesData.length,
+      airportData: airportsData.length,
+      transactionData: transactionData.length,
+    }));
+  }, [airplanesData.length, airportsData.length, dashboardData, fetchAllData, schedulesData.length, transactionData.length]);
+  
 
   return (
       <div id="wrapper">
