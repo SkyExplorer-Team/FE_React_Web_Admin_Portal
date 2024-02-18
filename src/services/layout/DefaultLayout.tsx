@@ -238,6 +238,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchAllData();
+ 
+  }, [fetchAllData]);
+  
+  useEffect(() => {
     setDashboardData((prevData) => ({
       ...prevData,
       scheduleData: schedulesData.length,
@@ -245,9 +249,8 @@ const App: React.FC = () => {
       airportData: airportsData.length,
       transactionData: transactionData.length,
     }));
-  }, [airplanesData.length, airportsData.length, dashboardData, fetchAllData, schedulesData.length, transactionData.length]);
+  }, [schedulesData, airplanesData, airportsData, transactionData]);
   
-
   return (
       <div id="wrapper">
         <div id="content-wrapper" className="d-flex flex-column">
