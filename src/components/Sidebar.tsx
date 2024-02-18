@@ -1,7 +1,7 @@
 import React from 'react';
 import {Offcanvas, ListGroup, Accordion} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCalendarDay, faHome, faMapLocation, faPlane, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {faCalendarDay, faHome, faMapLocation, faPlane, faUsers, faCreditCard} from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 import SkyExploreLogo from "../assets/images/Brand_Logo.svg";
 
@@ -40,6 +40,9 @@ const SideBarApp: React.FC<OffcanvasContentProps> = ({ show, handleClose }) => {
                     </Link>
                     <Link to="/schedule">
                       <ListGroup.Item action as="div"><span className="badge"><FontAwesomeIcon icon={faCalendarDay} /></span>Schedule</ListGroup.Item>
+                    </Link>
+                    <Link to="/transaction">
+                      <ListGroup.Item action as="div"><span className="badge"><FontAwesomeIcon icon={faCreditCard} /></span>Transaction</ListGroup.Item>
                     </Link>
                   </Accordion.Body>
                 </Accordion.Item>

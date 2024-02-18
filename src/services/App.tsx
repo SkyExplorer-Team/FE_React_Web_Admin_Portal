@@ -29,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/airport" element={<AppLayout />} />
             <Route path="/airplane" element={<AppLayout />} />
             <Route path="/schedule" element={<AppLayout />} />
+            <Route path="/transaction" element={<AppLayout />} />
           </Route>
           <Route path="*" element={<PageNotFound/>} />
           <Route path="/not-found" element={<PageNotFound/>} />
